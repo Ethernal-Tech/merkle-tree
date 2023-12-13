@@ -15,7 +15,7 @@ func BytesToHash(b []byte) Hash {
 	var h Hash
 
 	size := len(b)
-	min := min(size, HashLength)
+	min := Min(size, HashLength)
 
 	copy(h[HashLength-min:], b[len(b)-min:])
 
@@ -46,4 +46,13 @@ func NewKeccakState() KeccakState {
 // EncodeToHex generates a hex string based on the byte representation, with the '0x' prefix
 func EncodeToHex(str []byte) string {
 	return "0x" + hex.EncodeToString(str)
+}
+
+// Min returns smaller number between provided two
+func Min(a, b int) int {
+	if a < b {
+		return a
+	}
+
+	return b
 }
